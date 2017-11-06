@@ -7,12 +7,15 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Practice11PieChartView extends View {
+
+    private static final String TAG = Practice11PieChartView.class.getSimpleName();
 
     public Practice11PieChartView(Context context) {
         super(context);
@@ -45,24 +48,25 @@ public class Practice11PieChartView extends View {
 //        练习内容：使用各种 Canvas.drawXXX() 方法画饼图
         //1、画饼
         Paint paint = new Paint();
-        int angle = 0;
+        int currentAngle = 0;
         for (int i = 0; i < datas.size(); i++) {
             PieBean bean = datas.get(i);
-            angle = bean.count;
             paint.setColor(bean.color);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                canvas.drawArc(250, 50, 1050, 850, angle, angle + bean.count, true, paint);
+                Log.e(TAG,"cur:"+currentAngle+"--ang:"+(currentAngle + bean.angle));
+                canvas.drawArc(250, 50, 1050, 850, currentAngle, bean.angle, true, paint);
+                currentAngle += bean.angle;
             }
         }
     }
 
     class PieBean {
-        public int count;
+        public int angle;
         public String text;
         public int color;
 
         public PieBean(int count, String text, int color) {
-            this.count = count;
+            this.angle = count;
             this.text = text;
             this.color = color;
         }

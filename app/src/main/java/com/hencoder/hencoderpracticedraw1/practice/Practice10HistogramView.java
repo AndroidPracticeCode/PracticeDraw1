@@ -53,7 +53,7 @@ public class Practice10HistogramView extends View {
         Path path = new Path();
         path.moveTo(100, 50);
         path.lineTo(100, 800);
-        path.lineTo(1200, 800);
+        path.lineTo(1300, 800);
         canvas.drawPath(path, paint);
         //2、画方格
         path.reset();
@@ -70,7 +70,7 @@ public class Practice10HistogramView extends View {
         paint.setTextSize(30);
         for (int i = 0; i < datas.size(); i++) {
             BarBean bean = datas.get(i);
-            canvas.drawText(bean.name, (i + 1) * barWidth + 100, 840, paint);
+            canvas.drawText(bean.name, i * barWidth + 150, 840, paint);
         }
     }
 
